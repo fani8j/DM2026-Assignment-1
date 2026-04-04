@@ -39,9 +39,9 @@ def generate_linear_dataset(n,dim,noise_bound=0.5,is_reg=True):
 		y = (sigmoid(y) >=0.5).astype(np.uint8)
 	return X,y,W
 
-def plot_learning_curve(train_losses,val_losses):    
+def plot_learning_curve(train_losses,val_losses,save_path):    
 	plt.plot(range(len(train_losses)),train_losses,'o-',color='r',label='Training loss',markersize=1)
 	plt.plot(range(len(train_losses)),val_losses,'o-',color='g',label='Validation loss',markersize=1)
 	plt.legend(loc="best")
+	plt.savefig(save_path, dpi=300, bbox_inches='tight')  
 	plt.show()
-

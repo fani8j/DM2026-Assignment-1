@@ -21,7 +21,7 @@ class LinearModel():
 		if X.shape[1] == self.dim + 1:
 			return X
 		raise ValueError(f'Input feature dimension mismatch: expected {self.dim} (without bias) or {self.dim + 1} (with bias), got {X.shape[1]}')
-	def fit(self,X,y,lr,reg_type='',reg_lambda=0,n_iteration=50,val_ratio=.2):
+	def fit(self,X,y,lr,data_path,reg_type='',reg_lambda=0,n_iteration=50,val_ratio=.2):
 		'''
 		Fit data using gradient descent and l1/l2 regularization
 		'''
@@ -42,7 +42,7 @@ class LinearModel():
 				pass
 
 			self.W-= lr*grad_w 
-
+			save_path = f"{data_path}{lr}{n_iteration}.png"
 			#save training loss
 			self.train_losses.append(loss)
 			#predict validation set
@@ -51,8 +51,8 @@ class LinearModel():
 			self.val_losses.append(val_loss)
 			if (i+1) % 50 == 0:
 				print(f'{i+1}. Training loss: {loss}, Val loss:{val_loss}')
-
-		plot_learning_curve(self.train_losses,self.val_losses)
+       
+		plot_learning_curve(self.train_losses,self.val_losses,save_path)
 
 	def get_weight(self):
 		return self.W
