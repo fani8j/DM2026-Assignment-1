@@ -66,7 +66,7 @@ class LinearModel(BaseEstimator, ClassifierMixin):
 
 		X = self._ensure_bias_column(X)
 		X_train,y_train,X_val,y_val = get_train_val(X,y,val_ratio)
-		save_path = f"{data_path}{lr}{n_iteration}.png"  
+		save_path = f"{data_path}_train.png"  
 		for i in range(n_iteration):      
 			y_pred = self.act_fn(np.squeeze(X_train @ self.W))
 			# MSE loss for regression
