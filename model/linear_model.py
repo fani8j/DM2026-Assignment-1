@@ -40,7 +40,7 @@ class LinearModel(BaseEstimator, ClassifierMixin):
 		if X.shape[1] == self.dim + 1:
 			return X
 		raise ValueError(f'Input feature dimension mismatch: expected {self.dim} (without bias) or {self.dim + 1} (with bias), got {X.shape[1]}')
-	def fit(self,X,y,lr=None,reg_type=None,reg_lambda=None,n_iteration=None,val_ratio=None):
+	def fit(self,X,y,data_path='/images',lr=None,reg_type=None,reg_lambda=None,n_iteration=None,val_ratio=None):
 		'''
 		Fit data using gradient descent and l1/l2 regularization
 		'''
@@ -66,6 +66,7 @@ class LinearModel(BaseEstimator, ClassifierMixin):
 
 		X = self._ensure_bias_column(X)
 		X_train,y_train,X_val,y_val = get_train_val(X,y,val_ratio)
+		save_path = f"{data_path}{lr}{n_iteration}.png"  
 		for i in range(n_iteration):      
 			y_pred = self.act_fn(np.squeeze(X_train @ self.W))
 			# MSE loss for regression
@@ -92,7 +93,7 @@ class LinearModel(BaseEstimator, ClassifierMixin):
 				print(f'{i+1}. Training loss: {loss}, Val loss:{val_loss}')
 
 		if self.plot_curve:
-			plot_learning_curve(self.train_losses,self.val_losses)
+			plot_learning_curve(self.train_losses,self.val_losses,save_path)
 		return self
 
 	def get_weight(self):
