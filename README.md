@@ -1,5 +1,8 @@
-# NYCU Data Mining(Spring 2026) Assignment 1
-You can fork this repository
+# NYCU Data Mining (Spring 2026)
+
+This repository contains the coursework notebooks and reports for NYCU Data Mining Spring 2026.
+
+## Assignment 1
 
 ## File Structure
 
@@ -16,4 +19,12 @@ You can fork this repository
 	├── linear_model.py                      #3. Real World Classification
 	├── metrics.py                           #1. Linear Regression, 2. Logistic Regression
 	└── utils.py                             
+```
+
+## Assignment 2
+
+```text
+.
+├── Datamining_prob2_5.ipynb
+└── mobile_price.csv
 ```
